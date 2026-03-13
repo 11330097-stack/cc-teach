@@ -483,9 +483,16 @@ class LogList(ListView):
         return super().get_queryset().select_related('equip_model','author','user')
 
 class TestApplicationListByRole(ListView):
-    model = Applicant
+    
     def get_queryset(self):
         return Applicant.objects.filter(role=self.kwargs['roleid'])
-    
+
+class TestApplicationListByFamilyName(ListView):
+    def get_queryset(self):
+        return Applicant.objects.filter(name__startswith=self.kwargs['fn'])
+                                        
+
 class TestModelListByYearAfter(ListView):
-    model = date_return
+    
+    def get_queryset(self):
+        return Model.objects.filter(date_buy__year__gte=self.kwargs["year"])

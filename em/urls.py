@@ -1,4 +1,4 @@
-from django.urls import path,re_path reverse_lazy
+from django.urls import path,re_path,reverse_lazy
 from django.views.generic import RedirectView
 from .views import *
 
@@ -36,5 +36,6 @@ urlpatterns = [
     path('inventory/import/', InventoryImport.as_view(), name='inventory_import'),
     path('log/', LogList.as_view(),name='log_list'),
     path('t/a/r/<int:roleid>/',TestApplicationListByRole.as_view()),
-    re_path('t/a/fn/(?P<fn>.*)', TestApplicationListByRole),
+    re_path('t/a/fn/(?P<fn>.*)', TestApplicationListByFamilyName.as_view()),
+    path('t/m/y/<int:year>',TestModelListByYearAfter.as_view()),
     ]
