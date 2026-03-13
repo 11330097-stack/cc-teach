@@ -474,3 +474,18 @@ class InventoryImport(PermissionRequiredMixin, CreateView):
 
         form.instance.invlist = inv_list
         return super().form_valid(form)
+    
+class LogList(ListView):
+    model = Log
+
+    def get_queryset(self):
+        #return super().get_queryset()
+        return super().get_queryset().select_related('equip_model','author','user')
+
+class TestApplicationListByRole(ListView):
+    model = Applicant
+    def get_queryset(self):
+        return Applicant.objects.filter(role=self.kwargs['roleid'])
+    
+class TestModelListByYearAfter(ListView):
+    model = date_return
