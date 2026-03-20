@@ -475,6 +475,11 @@ class InventoryImport(PermissionRequiredMixin, CreateView):
         form.instance.invlist = inv_list
         return super().form_valid(form)
     
+
+class Logview(DetailView):
+    model =Log
+
+
 class LogList(ListView):
     model = Log
 
@@ -496,3 +501,6 @@ class TestModelListByYearAfter(ListView):
     
     def get_queryset(self):
         return Model.objects.filter(date_buy__year__gte=self.kwargs["year"])
+    
+class Logview(DetailView):
+    model = Log
