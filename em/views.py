@@ -493,7 +493,7 @@ class TestApplicantLending(ListView):
         return Applicant.objects.filter(
             log__date_apply__isnull=False, 
             log__date_return__isnull=True
-        )
+        ).distinct()
 class TestApplicationListByRole(ListView):
     
     def get_queryset(self):
@@ -510,5 +510,13 @@ class TestModelListByYearAfter(ListView):
         return Model.objects.filter(date_buy__year__gte=self.kwargs["year"])
     
 
+class TestEquipLending(ListView):
+    model = Equip
 
+    def get_queryset(self):
+        return Equip.objects.filter(
+            log__equip__model__status = 0,
+            log__date_apply__isnull = False,
+            log__date_return__isnull = True,
+        ).distinct()
 
