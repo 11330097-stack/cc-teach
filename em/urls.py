@@ -39,4 +39,5 @@ urlpatterns = [
     re_path('t/a/fn/(?P<fn>.*)', TestApplicationListByFamilyName.as_view()),
     path('t/m/y/<int:year>',TestModelListByYearAfter.as_view()),
     path('log/<int:pk>',Logview.as_view(), name='log_view'),
+    path('t/a/lending/', TestApplicantLending.as_view()),
     ]
